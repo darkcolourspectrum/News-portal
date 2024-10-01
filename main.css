@@ -65,3 +65,15 @@
     background-color: rgba(255, 255, 255, 0.5); 
     z-index: 9999; 
 }
+
+/* body dynamic-post */
+
+.post-div h1 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.main-content {
+    font-size: 1.5em;
+    text-indent: 2em;
+}
