@@ -28,32 +28,12 @@
     transform: scale(1);
 }
 
-.modal-content {
-    font-size: 20px;
-    color:#000;
-}
-
-.modal-body img { 
-    max-width: 75px;
-}
-
-
-.custom-table tr{
-    border-bottom: 2px solid #ddd8d8;
-}
-
-.custom-table tr:last-child {
-    border-bottom: none;
-}
-
 .container-fluid {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
 }
 
-.container {
-    font-family: "Roboto", sans-serif;
-}
+
 
 
 /* body auth */
