@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/192fa79f3a.js" crossorigin="anonymous"></script>
+    <title>Auth</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <!-- <img src="Assets/logoSVGshop.svg" alt="Logo" class="logo"> -->
+            News-portal
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="list-of-posts.html">Новости</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Регистрация</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Авторизация</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+          </div>
+        </div>
+      </nav>
+
+    <section class="container-fluid">
+        <div class="auth-div">
+            <form id="loginForm">
+                <div class="form-group custom-form">
+
+                    <label for="exampleInputEmail1">E-mail</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="loginButton">Войти</button>
+            </form>
+        </div>
+    </section>
+    
+    <script>
+    function checkEmptyFields(form) {
+        let inputs = form.getElementsByTagName('input');
+        let isEmpty = false;
+    
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim() === '') {
+                isEmpty = true;
+                break;
+            }
+        }
+    
+        if (isEmpty) {
+            alert('Пожалуйста, заполните все поля!');
+            return false;
+        }
+    
+        return true;
+    }
+    
+    document.getElementById('loginForm').onsubmit = function(e) {
+        e.preventDefault();
+        if (checkEmptyFields(this)) {
+            Formdata(this);
+        }
+    };
+    
+    function Formdata(form) {
+        console.log("Форма отправлена");
+        return false;
+    }
+    </script>
+
+    <script>
+
+        const users = [
+            {
+            id: 1,
+            name: "John Doe",
+            email: "john.doe@example.com",
+            password: "pass"
+            },
+
+            {
+            id: 2,
+            name: "Kate Red",
+            email: "kate.red@example.com",
+            password: "pass12345678"
+            },
+
+            {
+            id: 3,
+            name: "test",
+            email: "t@t.com",
+            password: "t"
+            },
+
+        ];
+  
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginButton = document.getElementById('loginButton');
+        
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+        
+                const email = document.getElementById('exampleInputEmail1').value;
+                const password = document.getElementById('exampleInputPassword1').value;
+        
+                const user = users.find(u => u.email === email && u.password === password);
+        
+                if (user) {
+                    window.location.href = 'list-of-posts.html'; 
+                } else {
+                    alert('Неверный email или пароль');
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

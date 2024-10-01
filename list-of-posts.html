@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/192fa79f3a.js" crossorigin="anonymous"></script>
+    <title>List of posts</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <!-- <img src="Assets/logoSVGshop.svg" alt="Logo" class="logo"> -->
+            News-portal
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="list-of-posts.html">Новости</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Регистрация</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Авторизация</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+
+    <section class="first-section">
+        <div id="loading-spinner" class="d-flex justify-content-center position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center">
+            <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="container d-none" id="posts-container">
+            
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cardTexts = document.querySelectorAll('.card-text');
+            cardTexts.forEach(function(element) {
+            let text = element.innerText;
+            if (text.length > 40) {
+                element.innerText = text.substring(0, 100) + '...';
+            }
+        });
+    });
+    </script>
+
+<script>
+    const posts = [
+        {
+            id: 1,
+            title: "Example Post Title 1",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date: "2024-09-12",
+            authorId: 1
+        },
+        {
+            id: 2,
+            title: "Example Post Title 2",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date: "2024-09-12",
+            authorId: 2
+        },
+        {
+            id: 3,
+            title: "Example Post Title 3",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date: "2024-09-12",
+            authorId: 3
+        },
+    ];
+
+    function createCardHTML(post) {
+        return `
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${post.title}</h5>
+                        <p class="card-text">${post.content.substring(0, 100)}...</p>
+                        <a href="#" class="btn btn-primary">Перейти</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderPosts() {
+        const spinner = document.getElementById('loading-spinner');
+        const container = document.getElementById('posts-container');
+
+        spinner.classList.remove('d-none');
+        container.classList.add('d-none');
+
+        setTimeout(() => {
+            if (container) {
+                const cardsHTML = posts.map(createCardHTML).join('');
+                container.innerHTML = `
+                    <div class="row">
+                        ${cardsHTML}
+                    </div>
+                    <div class="row">
+                        ${cardsHTML}
+                    </div>
+            `;
+                spinner.classList.add('d-none');
+                container.classList.remove('d-none');
+            } else {
+                console.error("Element with id 'posts-container' not found");
+            }
+        }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderPosts);
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
